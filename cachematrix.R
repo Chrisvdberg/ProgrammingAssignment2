@@ -2,14 +2,19 @@
 ## functions do
 
 ## Write a short comment describing this function
+## I created the makeCacheMatrix below. 
+## The cashsolve i have put into the the function itself so when you need the inverse, you only to call the inversie function
 
-makeCacheMatrix <- function(x = matrix()) {
-
-}
-
-
-## Write a short comment describing this function
-
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+makeCacheMatrix <- function(m = matrix()){
+        i <- NULL
+        set <- function(y){
+                m <<- y
+                i <<- NULL
+        }
+        get <- function() m
+        cacheSolve <- function() {
+                if (is.null(i)) i <<- solve(m) %*% m
+                i
+        }
+        list(set = set, get = get, cacheSolve = cacheSolve)
 }
